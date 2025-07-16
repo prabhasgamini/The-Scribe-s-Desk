@@ -83,13 +83,6 @@ Simply open `index.html` in your browser.
 
 Each subject is mapped to a specific prompt design inside `app.py`, ensuring focused and relevant answers.
 
----
-
-## 🎨 Screenshots
-
-> Add screenshots here if needed.
-
----
 
 ## 🛡️ License
 
