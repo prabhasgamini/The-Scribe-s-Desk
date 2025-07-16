@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Scribe's Desk - Choose a Subject</title>
+    <!-- Google Fonts for Merriweather and Playfair Display -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to your custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Custom colors defined using CSS variables for consistent theming with Tailwind */
+        :root {
+            --color-parchment-light: #fefcf3; /* Very light, slightly creamy parchment */
+            --color-parchment-medium: #e7d8c6; /* Deeper, more saturated parchment for rolls/borders */
+            --color-ink-dark: #4b3e3e; /* Dark, desaturated brown/charcoal for text */
+            --color-border-subtle: #d0c2b2; /* Subtle border for messages/elements */
+            --color-background-subtle: #f5f2e8; /* Light, warm background behind the scroll */
+            --color-parchment-dark: #8b5a2b; /* Rich brown for accents, used for SVGs and text */
+        }
+        body {
+            font-family: 'Merriweather', serif; /* Default body font */
+            background-color: var(--color-background-subtle);
+            color: var(--color-ink-dark);
+            overflow: hidden; /* Prevent scrollbars from background elements */
+        }
+        /* Custom Tailwind components to apply our variables and common styles */
+        @layer components {
+            .btn-parchment {
+                @apply bg-parchment-dark text-white py-2 px-4 rounded-md hover:bg-parchment-medium transition-colors duration-300 shadow-md;
+            }
+            .border-parchment {
+                @apply border border-parchment-dark;
+            }
+            /* Explicit Tailwind utility classes using custom variables */
+            .bg-parchment-light { background-color: var(--color-parchment-light); }
+            .bg-parchment-medium { background-color: var(--color-parchment-medium); }
+            .bg-parchment-dark { background-color: var(--color-parchment-dark); }
+            .text-parchment-dark { color: var(--color-parchment-dark); }
+            .text-ink-dark { color: var(--color-ink-dark); }
+            .border-parchment-light { border-color: var(--color-parchment-light); }
+            .border-parchment-medium { border-color: var(--color-parchment-medium); }
+            .border-parchment-dark { border-color: var(--color-parchment-dark); }
+            .border-subtle { border-color: var(--color-border-subtle); }
+            .font-merriweather { font-family: 'Merriweather', serif; }
+            .font-playfair { font-family: 'Playfair Display', serif; }
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <!-- Background elements (decorative SVG icons with animations) -->
+    <!-- These SVGs are directly embedded for efficiency and styling flexibility -->
+    <div class="background-element element-quill">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M216,216a8,8,0,0,1-8,8H48a8,8,0,0,1,0-16H208A8,8,0,0,1,216,216ZM144,176h-.38a7.92,7.92,0,0,1-6.19-2.83L69.83,81.19A8,8,0,0,1,69.58,70.5L78.19,62A8,8,0,0,1,88.9,62.38L165.17,138.6A7.92,7.92,0,0,1,168,144v32ZM67,51.84l-11.84,11.84a8,8,0,0,0,0,11.32L71.19,98.17,98.17,71.19,74.91,47.93a8,8,0,0,0-11.32,0Z"></path></svg>
+    </div>
+    <div class="background-element element-scroll-small">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM112,64v128h80V64Zm96-8V200H192V48Zm-96,0H40V200h72Z"></path></svg>
+    </div>
+    <div class="background-element element-book">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,40H72A16,16,0,0,0,56,56V216a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM144,208H88V64h56ZM208,208H160V64h48V208Z"></path></svg>
+    </div>
+    <div class="background-element element-inkwell">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M216,160V96a8,8,0,0,0-8-8H48a8,8,0,0,0-8,8v64a8,8,0,0,0,8,8H208A8,8,0,0,0,216,160Zm-16,0H56V96H200ZM176,176a8,8,0,0,0,8,8h8a8,8,0,0,0,0-16h-8A8,8,0,0,0,176,176Z"></path></svg>
+    </div>
+    <div class="background-element element-compass">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm40-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H88a8,8,0,0,1,0-16h32V88a8,8,0,0,1,16,0v32h32A8,8,0,0,1,168,128Z"></path></svg>
+    </div>
+    <div class="background-element element-gear">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M239.87,100.08l-26.68-4.44A103.11,103.11,0,0,0,208,72.77l15.17-21.72a8,8,0,0,0-10.74-11.23L191.13,61.5a104.53,104.53,0,0,0-21.72-15.17L164,24.13A8,8,0,0,0,156,16H99.85a8,8,0,0,0-7.93,7.94L94.44,50.71A104.53,104.53,0,0,0,72.72,66.13L50.9,50.91a8,8,0,0,0-11.23,10.74l15.17,21.72A103.11,103.11,0,0,0,48,100.08L24.13,104.2a8,8,0,0,0-7.93,7.93v56.15a8,8,0,0,0,7.94,7.93l26.68,4.44a103.11,103.11,0,0,0,5.19,26.81L48.87,205.09a8,8,0,0,0,10.74,11.23L74.91,194.5a104.53,104.53,0,0,0,21.72,15.17L100.08,231.87a8,8,0,0,0,7.93,7.93h56.15a8,8,0,0,0,7.94-7.93l4.44-26.68a104.53,104.53,0,0,0,21.72-15.17l21.72,15.17a8,8,0,0,0,11.23-10.74L194.5,181.13a103.11,103.11,0,0,0,15.17-21.72l26.68-4.44a8,8,0,0,0,7.93-7.93v-56.15A8,8,0,0,0,239.87,100.08ZM128,176a48,48,0,1,1,48-48A48,48,0,0,1,128,176Z"></path></svg>
+    </div>
+    <div class="background-element element-atom">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M168,144a40,40,0,1,1-40-40A40,40,0,0,1,168,144ZM254,128c0,61.85-64,112-126,112S2,189.85,2,128,66,16,128,16,254,66.15,254,128ZM128,32c-39.7,0-72.7,21.56-96,56H224C200.7,53.56,167.7,32,128,32ZM128,224c39.7,0,72.7-21.56,96-56H32C55.3,194.44,88.3,224,128,224Zm-16-96a8,8,0,0,1-8,8H64a8,8,0,0,1-8-8v-16a8,8,0,0,1,8-8h40A8,8,0,0,1,112,128Zm128,0a8,8,0,0,1-8,8H144a8,8,0,0,1-8-8v-16a8,8,0,0,1,8-8h40a8,8,0,0,1,8,8Z"></path></svg>
+    </div>
+    <div class="background-element element-ruler">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,208a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V48a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM48,56v144H208V56ZM88,104a8,8,0,0,0,0-16H72a8,8,0,0,0,0,16Zm40,0a8,8,0,0,0,0-16H112a8,8,0,0,0,0,16Zm40,0a8,8,0,0,0,0-16H152a8,8,0,0,0,0,16Zm40,0a8,8,0,0,0,0-16H192a8,8,0,0,0,0,16Zm-80,48a8,8,0,0,0,0-16H112a8,8,0,0,0,0,16Z"></path></svg>
+    </div>
+    <div class="background-element element-bulb">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,24A104,104,0,0,0,24,128c0,56.7,39.3,95.53,74.79,101.44a8,8,0,0,0,6.91-4.71L108,192H148l2.3,32.73a8,8,0,0,0,6.91,4.71C200.7,223.53,240,184.7,240,128A104,104,0,0,0,128,24Zm0,192c-31,0-58.26-17.72-72.33-40.42a8,8,0,0,0-1.74-8.83l-8.5-12.78a8,8,0,0,1,.84-9.94l6.19-7.74a8,8,0,0,0,1.8-9.42,8.19,8.19,0,0,0-1.79-11.41l-8.59-12.79a8,8,0,0,1-.62-9.92l6.21-7.76a8,8,0,0,0,1.7-9.39,8.1,8.1,0,0,0-1.89-11.4l-8.49-12.78a8,8,0,0,1,.84-9.94l6.19-7.74a8,8,0,0,0,1.8-9.42,8.19,8.19,0,0,0-1.79-11.41l-8.59-12.79a8,8,0,0,1-.62-9.92l6.21-7.76a8,8,0,0,0,1.7-9.39,8.1,8.1,0,0,0-1.89-11.4l-8.49-12.78a8,8,0,0,1,.84-9.94l6.19-7.74a8,8,0,0,0,1.8-9.42,8.19,8.19,0,0,0-1.79-11.41l-8.59-12.79a8,8,0,0,1-.62-9.92l6.21-7.76a8,8,0,0,0,1.7-9.39,8.1,8.1,0,0,0-1.89-11.4l-8.49-12.78a8,8,0,0,1,.84-9.94l6.19-7.74a8,8,0,0,0,1.8-9.42,8.19,8.19,0,0,0-1.79-11.41l-8.59-12.79a8,8,0,0,1-.62-9.92l6.21-7.76a8,8,0,0,0,1.7-9.39,8.1,8.1,0,0,0-1.89-11.4l-8.49-12.78a8,8,0,0,1,.84-9.94l6.19-7.74a8,8,0,0,0,1.8-9.42,8.19,8.19,0,0,0-1.79-11.41l-8.59-12.79a8,8,0,0,1-.62-9.92l6.21-7.76a8,8,0,0,0,1.7..."></path></svg>
+    </div>
+    <div class="background-element element-magnifier">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM112,64v128h80V64Zm96-8V200H192V48Zm-96,0H40V200h72Z"></path></svg>
+    </div>
+    <div class="background-element element-flask">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM144,192a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h40V96a8,8,0,0,1,16,0v32h40a8,8,0,0,1,0,16H144Z"></path></svg>
+    </div>
+    <div class="background-element element-chart">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM144,192a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h40V96a8,8,0,0,1,16,0v32h40a8,8,0,0,1,0,16H144Z"></path></svg>
+    </div>
+    <div class="background-element element-abacus">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM144,192a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h40V96a8,8,0,0,1,16,0v32h40a8,8,0,0,1,0,16H144Z"></path></svg>
+    </div>
+    <div class="background-element element-telescope">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V56A16,16,0,0,0,208,40ZM144,192a8,8,0,0,1-16,0V144H88a8,8,0,0,1,0-16h40V96a8,8,0,0,1,16,0v32h40a8,8,0,0,1,0,16H144Z"></path></svg>
+    </div>
+    <div class="background-element element-globe">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.12,104.12,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm-24-40a8,8,0,0,1-8-8V96a8,8,0,0,1,16,0v72A8,8,0,0,1,104,176Zm48-16a8,8,0,0,1-8-8V88a8,8,0,0,1,16,0v64A8,8,0,0,1,152,160Z"></path></svg>
+    </div>
+    <div class="background-element element-scroll-large">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM112,64v128h80V64Zm96-8V200H192V48Zm-96,0H40V200h72Z"></path></svg>
+    </div>
+    <div class="background-element element-pencil">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM112,64v128h80V64Zm96-8V200H192V48Zm-96,0H40V200h72Z"></path></svg>
+    </div>
+    <div class="background-element element-test-tube">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path d="M224,200a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8ZM112,64v128h80V64Zm96-8V200H192V48Zm-96,0H40V200h72Z"></path></svg>
+    </div>
+
+    <!-- Main content container -->
+    <div id="main-content" class="relative z-10 p-8 rounded-lg shadow-xl scroll-container w-full max-w-4xl h-[90vh] max-h-[700px] flex flex-col items-center justify-between overflow-hidden">
+        <!-- Main title/description for subject selection -->
+        <div id="subject-selection" class="text-center transition-opacity duration-500 flex flex-col items-center justify-center h-full">
+            <h1 class="text-5xl font-playfair mb-4 text-parchment-dark">The Scribe's Desk</h1>
+            <p class="text-xl font-merriweather mb-8 text-ink-dark max-w-2xl">Welcome, seeker of knowledge! The Scribe is ready to transcribe your thoughts on various subjects. Choose a scroll to begin:</p>
+            
+            <!-- Subject cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Each subject card - data-subject attribute MUST match PROMPT_DESIGNS_OPENAI keys in app.py -->
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="MACHINE LEARNING - 1">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">MACHINE LEARNING - 1</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="DBMS">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">DBMS</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="DESIGN AND ANALYSIS OF ALGORITHMS">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">DESIGN AND ANALYSIS OF ALGORITHMS</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="DATA STRUCTURES AND ALGORITHMS">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">DATA STRUCTURES AND ALGORITHMS</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="ARTIFICIAL INTELLIGENCE - 1">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">ARTIFICIAL INTELLIGENCE - 1</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+                <div class="subject-card bg-parchment-medium text-ink-dark p-6 rounded-lg shadow-md border-parchment-dark cursor-pointer hover:shadow-lg transition-shadow duration-300 transform hover:-translate-y-1" data-subject="OPERATING SYSTEMS">
+                    <h2 class="text-3xl font-playfair mb-2 text-parchment-dark">OPERATING SYSTEMS</h2>
+                    <p class="font-merriweather text-base">Explore fundamental concepts and advanced topics.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatbot Interface (initially hidden) -->
+        <div id="chatbot-container" class="hidden flex-col w-full h-full bg-parchment-light rounded-lg p-6 shadow-inner border border-border-subtle max-h-full">
+            <div id="chat-header" class="flex justify-between items-center mb-4 pb-4 border-b border-border-subtle">
+                <h2 id="chat-subject-title" class="text-4xl font-playfair text-parchment-dark"></h2>
+                <button id="back-button" class="btn-parchment">Back to Subjects</button>
+            </div>
+            
+            <div id="chat-messages" class="flex-grow overflow-y-auto custom-scrollbar p-4 bg-parchment-light rounded-md border border-border-subtle mb-4">
+                <!-- Messages will be appended here dynamically by JavaScript -->
+                <div class="message bot-message self-start">
+                    <span class="sender">The Scribe:</span>
+                    <p class="text-gray-700 font-merriweather text-base md:text-lg leading-relaxed mt-1">Welcome! How may I assist your scholarly pursuits in this subject?</p>
+                </div>
+            </div>
+
+            <div id="chat-input-area" class="flex space-x-3">
+                <input type="text" id="user-input" placeholder="Compose your query..." class="flex-grow p-3 rounded-md border border-parchment-dark bg-parchment-light text-ink-dark focus:outline-none focus:ring-2 focus:ring-parchment-dark shadow-sm">
+                <button id="send-button" class="btn-parchment">Send</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Link to your JavaScript file - MUST be named script.js and be in the same folder -->
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    // Ensure the custom scrollbar styles are applied
+    document.querySelectorAll('.custom-scrollbar').forEach(el => {
+        el.style.overflowY = 'auto';
+        el.style.scrollbarWidth = 'thin';
+        el.style.scrollbarColor = 'var(--color-border-subtle) transparent';
+    });
+
+    // Add hover effects to subject cards
+    document.querySelectorAll('.subject-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.classList.add('hover:shadow-lg');
+        });
+        card.addEventListener('mouseleave', () => {
+            card.classList.remove('hover:shadow-lg');
+        });
+    });
+    // Add click event to subject cards to show chatbot interface
+    document.querySelectorAll('.subject-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const subject = card.getAttribute('data-subject');
+            document.getElementById('chat-subject-title').textContent = subject;
+            document.getElementById('subject-selection').classList.add('hidden');
+            document.getElementById('chatbot-container').classList.remove('hidden');
+        });
+    });
+    // Back button functionality
+    document.getElementById('back-button').addEventListener('click', () => {
+        document.getElementById('chatbot-container').classList.add('hidden');
+        document.getElementById('subject-selection').classList.remove('hidden');
+    });
+    // Send button functionality
+    document.getElementById('send-button').addEventListener('click', () => {
+        const userInput = document.getElementById('user-input');
+        const messageText = userInput.value.trim();
+        if (messageText) {
+            appendMessage('You', messageText, 'user-message');
+            userInput.value = '';
+            // Simulate bot response
+            setTimeout(() => {
+                appendMessage('The Scribe', `You asked: "${messageText}". How may I assist you further?`, 'bot-message');
+            }, 1000);
+        }
+    });
+    // Append message function
+    function appendMessage(sender, text, className) {
+        const messageContainer = document.createElement('div');
+        messageContainer.className = `message ${className} self-${className === 'user-message' ? 'end' : 'start'} mb-4`;
+        messageContainer.innerHTML = `<span class="sender">${sender}:</span><p class="text-gray-700 font-merriweather text-base md:text-lg leading-relaxed mt-1">${text}</p>`;
+        document.getElementById('chat-messages').appendChild(messageContainer);
+        // Scroll to the bottom of the chat
+        const chatMessages = document.getElementById('chat-messages');
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    // Handle Enter key for sending messages
+    document.getElementById('user-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            document.getElementById('send-button').click();
+        }
+    });
+    
