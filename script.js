@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             console.log("Sending message to backend...");
-            const response = await fetch('https://the-scribe-s-desk.onrender.com', { // Ensure this URL is correct
+            const response = await fetch('http://127.0.0.1:5000/chat', { // Ensure this URL is correct
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
