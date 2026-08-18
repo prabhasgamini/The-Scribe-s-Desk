@@ -45,7 +45,7 @@ except Exception as e:
     print(f"CRITICAL ERROR: Failed to initialize OpenRouter client: {e}")
     exit(1)
 
-OPENROUTER_MODEL = "meta-llama/llama-3.3-70b-instruct:free"
+OPENROUTER_MODEL = "google/gemma-4-31b-it:free"
 
 PROMPT_DESIGNS_OPENROUTER = {
     "MACHINE LEARNING - 1": {
