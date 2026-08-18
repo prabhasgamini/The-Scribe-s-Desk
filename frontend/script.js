@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentSubject = '';
 
-    // Deployed Render Endpoint
-    const BACKEND_URL = 'https://the-scribe-s-desk.onrender.com/chat';
+    // Relative endpoint works directly when Flask serves the frontend
+    const BACKEND_URL = '/chat';
 
     // Subject Card Selection
     subjectCards.forEach(card => {
