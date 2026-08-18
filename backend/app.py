@@ -1,18 +1,22 @@
 # app.py
-# Backend for "The Scribe's Desk" chatbot.
+# Backend and Static File Server for "The Scribe's Desk" chatbot.
 
 import os
 import re
 import traceback
 from dotenv import load_dotenv
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from openai import OpenAI, AuthenticationError, APIError
 
 # Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
+# Define absolute paths so Flask locates the frontend directory relative to backend/app.py
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FRONTEND_DIR = os.path.join(BASE_DIR, 'frontend')
+
+app = Flask(__name__, static_folder=FRONTEND_DIR)
 CORS(app)  # Enables cross-origin requests for frontend clients
 
 # --- Configuration ---
@@ -100,9 +104,23 @@ PROMPT_DESIGNS_OPENROUTER = {
     }
 }
 
-# --- Health Check Route for Render ---
-@app.route('/', methods=['GET', 'HEAD'])
+# --- Frontend Static File Routes ---
+@app.route('/', methods=['GET'])
+def serve_index():
+    """Serves the main frontend index.html page at the root URL."""
+    return send_from_directory(FRONTEND_DIR, 'index.html')
+
+@app.route('/<path:path>', methods=['GET'])
+def serve_static(path):
+    """Serves static assets (script.js, style.css, images, etc.) from frontend directory."""
+    if os.path.exists(os.path.join(FRONTEND_DIR, path)):
+        return send_from_directory(FRONTEND_DIR, path)
+    return send_from_directory(FRONTEND_DIR, 'index.html')
+
+# --- Backend Health Endpoint ---
+@app.route('/health', methods=['GET', 'HEAD'])
 def health_check():
+    """Returns JSON status for monitoring and uptime checks."""
     return jsonify({"status": "healthy", "service": "The Scribe's Desk Backend"}), 200
 
 # --- API Endpoint for Chat ---
